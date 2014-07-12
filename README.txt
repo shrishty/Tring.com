@@ -1,4 +1,4 @@
-newProject README
+Tring README
 ==================
 
 Getting Started
