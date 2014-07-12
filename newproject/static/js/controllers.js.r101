@@ -1,0 +1,116 @@
+var phoneBrandList = angular.module('phoneBrandList', []);
+
+phoneBrandList.controller('PhoneListCtrl', function($scope , $http) {
+	$scope.currentPhoneRow = -1
+	$scope.currentBrandRow = -1
+
+	$scope.phones = [
+		{
+			'brand': 'Apple', 
+			'model': 'iphone',
+			'os':'ios'
+		},
+		{
+			'brand': 'Samsung', 
+			'model': 'iphone',
+			'os':'ios'
+		},
+		{
+			'brand': 'Google', 
+			'model': 'iphone',
+			'os':'ios'
+		},
+		{
+			'brand': 'Nokia', 
+			'model': 'iphone',
+			'os':'ios'
+		}]
+	$scope.brands = [{
+						'name':'Google',
+						'val': 'gog1'
+					  },
+					  {
+						'name':'Samsung',
+						'val': 'sam1'
+					  },
+					  {
+						'name':'Nokia',
+						'val': 'no1'
+					  },
+					  {
+						'name':'Apple',
+						'val': 'app1'
+					  }
+					]
+
+	$scope.removePhone = function(){
+		var index
+		$scope.phones.splice(index, 1);
+	}
+
+	$scope.editDetails = function(){
+		var os = document.getElementById("os").value
+		var brand = document.getElementById("phonebrand").value
+		var model = document.getElementById("model").value
+		$scope.phones[$scope.currentPhoneRow] = {"brand": brand, "model": model, "os":os}
+	}
+
+	$scope.addBrand = function() {
+		var brand = document.getElementById("newbrand").value
+		var newbrand = {"name": brand, "val":brand + "1"}
+		$scope.brands.push(newbrand)
+	}
+
+	$scope.addPhone = function() {
+		var os = document.getElementById("addOS").value
+		var brand = document.getElementById("addBrand").value
+		var model = document.getElementById("addModel").value
+		$scope.phones.push({"brand":brand, "model":model, "os":os})
+		console.log($scope.phones)
+	}
+
+	$scope.filterByBrand = function(currPhone){
+		if($scope.currentBrandRow == -1)
+			return true
+		if(currPhone.brand == $scope.brands[$scope.currentBrandRow].name)
+			return true
+		else
+			return false
+	}
+
+	$scope.setValuesOnClick = function(phoneBrand){
+		var index
+		console.log("herer")
+		for(var i = $scope.phones.length - 1; i > -1; i--)
+			if($scope.phones[i].brand == phoneBrand)
+				index = i
+		$scope.currentPhoneRow = index
+		console.log($scope.currentPhoneRow)
+	}
+
+	$scope.setValueBrand = function(phoneBrand){
+		var index
+		for(var i = $scope.brands.length - 1; i > -1; i--)
+			if($scope.brands[i].name == phoneBrand)
+				index = i
+		$scope.currentBrandRow = index
+		console.log("herr")
+	}
+
+	$scope.makeActive = function() {
+		// console.log($scope.brands[$scope.currentBrandRow].val)
+		// var temp = document.getElementById($scope.brands[$scope.currentBrandRow].val)
+		// console.log("haaaaaaaaaaa" + temp)
+		// document.getElementById($scope.brands[$scope.currentBrandRow].val).class = "list-group-item ng-binding ng-scope active"
+	}
+
+	$scope.fetch = function() {
+		$http.get("http://localhost:6543/user").success(function(data, status, headers, config) {
+		console.log(data)
+	});
+	}	
+
+})
+
+// phoneBrandList.controller.$inject = ['$scope']
+

@@ -1,0 +1,365 @@
+<div class="container" ng-controller='TabCtrl'>
+	        	<!-- Nav tabs -->
+	    	<ul class="nav nav-tabs">
+	    	  <li><a href="#brand" data-toggle="tab">Brand</a></li>
+	    	  <li><a href="#feature" data-toggle="tab">Feature</a></li>
+	    	  <li><a href="#category" data-toggle="tab">Category</a></li>
+	    	  <li><a href="#price" data-toggle="tab">Price</a></li>
+	    	</ul>
+	    	 
+	    	<!-- Tab panes -->
+	    	<div class="tab-content">
+	    	  <div class="tab-pane active" id="brand">
+	    		<div class="row">
+	    			<div class="col-md-4 col-sm-4 col-lg-4" >
+	    				<ul class="list-group">
+	    					<div href="#" 
+	    						id={{brand.name+brand.id}}
+	    						class="list-group-item" 
+	    						ng-repeat="brand in brands" 
+	    						ng-click="setValueBrand(brand.name)"
+	    						>
+	    						{{brand.name}}
+	    					</div>
+	    				</ul>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addBrand1">Add Brand</button>
+	    			</div>
+	    		  	<div class="col-md-8 col-sm-8 col-lg-8">
+	    				<table class="table table-bordered table-hover">
+	    					<thead>
+	    						<tr>
+	    							<th>Name</th>
+	    			    			<th>Price</th>
+	    			    			<th>Brand</th>
+	    			    			<th>Quantity</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr class="aaaaa"	  
+	    							title = {{phone.name+phone.id}} 
+	    							data-toggle = "popover" 
+	    							data-placement = "left" 
+	    							ng-repeat="phone in phones | filter:filterByBrand"
+	    							ng-click="setValuesOnClick(phone.id)">
+	    							<td>{{phone.name}}</td>
+	    							<td>{{phone.price}}</td>
+	    							<td>{{phone.brand}}</td>
+	    							<td>{{phone.quantity}}</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addPhone">Add Phones</button>
+	    			</div>
+	    		</div>
+	    	</div>	
+	      	<div class="tab-pane" id="feature">
+	      		<div class="row">
+	    			<div class="col-md-4 col-sm-4 col-lg-4" >
+	    				<ul class="list-group">
+	    					<div href="#" 
+	    						id={{feature.feature_name + feature.feature_id}}
+	    						class="list-group-item" 
+	    						ng-repeat="feature in features" 
+	    						ng-click="setValueFeature(feature.feature_id); setProductsTobeListed()"
+	    						>
+	    						{{feature.feature_name}}
+	    					</div>
+	    				</ul>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addFeature1">Add Feature</button>
+	    			</div>
+	    		  	<div class="col-md-8 col-sm-8 col-lg-8">
+	    				<table class="table table-bordered table-hover">
+	    					<thead>
+	    						<tr>
+	    							<th>Name</th>
+	    			    			<th>Price</th>
+	    			    			<th>Brand</th>
+	    			    			<th>Quantity</th>
+	    			    			<th>Feature Name</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr class="aaaaa"	  
+	    							title = {{phone.name+phone.id}} 
+	    							data-toggle = "popover" 
+	    							data-placement = "left" 
+	    							ng-repeat="phone in featureProducts"
+	    							ng-click="setValuesOnClick(phone.id)">
+	    							<td>{{phone.name}}</td>
+	    							<td>{{phone.price}}</td>
+	    							<td>{{phone.brand}}</td>
+	    							<td>{{phone.quantity}}</td>
+	    							<td>{{phone.feature_name}}</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addPhone">Add Phones</button>
+	    			</div>
+	    		</div>
+	      	</div>
+	      	<div class="tab-pane" id="category">
+	      		<div class="row">
+	    			<div class="col-md-4 col-sm-4 col-lg-4" >
+	    				<ul class="list-group">
+	    					<div href="#" 
+	    						id={{feature.feature_name + feature.feature_id}}
+	    						class="list-group-item" 
+	    						ng-repeat="category in categories" 
+	    						ng-click="setValueCategory(category.id); setProductsTobeListedbyCategory()"
+	    						>
+	    						{{category.name}}
+	    					</div>
+	    				</ul>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addCategory1">Add Category</button>
+	    			</div>
+	    		  	<div class="col-md-8 col-sm-8 col-lg-8">
+	    				<table class="table table-bordered table-hover">
+	    					<thead>
+	    						<tr>
+	    							<th>Name</th>
+	    			    			<th>Price</th>
+	    			    			<th>Brand</th>
+	    			    			<th>Quantity</th>
+	    			    			<th>Category Name</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr class="aaaaa"	  
+	    							title = {{phone.name+phone.id}} 
+	    							data-toggle = "popover" 
+	    							data-placement = "left" 
+	    							ng-repeat="phone in categoryProducts"
+	    							ng-click="setValuesOnClick(phone.id)">
+	    							<td>{{phone.name}}</td>
+	    							<td>{{phone.price}}</td>
+	    							<td>{{phone.brand}}</td>
+	    							<td>{{phone.quantity}}</td>
+	    							<td>{{phone.category_name}}</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addPhone">Add Phones</button>
+	    			</div>
+	    		</div>
+	      	</div>
+	      	<div class="tab-pane" id="price">
+	      		<div class="row">
+	    			<div class="col-md-4 col-sm-4 col-lg-4" >
+	    				<ul class="list-group">
+	    					<div href="#" 
+	    						id={{feature.feature_name + feature.feature_id}}
+	    						class="list-group-item" 
+	    						ng-repeat="cost in costRange" 
+	    						ng-click="setValueCostRange(cost.id); setProductsTobeListedbyCostRange()"
+	    						>
+	    						{{cost.range1}} - {{cost.range2}}
+	    					</div>
+	    				</ul>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addCategory1">Add Category</button>
+	    			</div>
+	    		  	<div class="col-md-8 col-sm-8 col-lg-8">
+	    				<table class="table table-bordered table-hover">
+	    					<thead>
+	    						<tr>
+	    							<th>Name</th>
+	    			    			<th>Price</th>
+	    			    			<th>Brand</th>
+	    			    			<th>Quantity</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr class="aaaaa"	  
+	    							title = {{phone.name+phone.id}} 
+	    							data-toggle = "popover" 
+	    							data-placement = "left" 
+	    							ng-repeat="phone in productInCostRange"
+	    							ng-click="setValuesOnClick(phone.id)">
+	    							<td>{{phone.name}}</td>
+	    							<td>{{phone.price}}</td>
+	    							<td>{{phone.brand}}</td>
+	    							<td>{{phone.quantity}}</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+	    				<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target = "#addPhone">Add Phones</button>
+	    			</div>
+	    		</div>
+	      	</div>
+	    </div>
+	</div>
+			<ul class="list-group" style="display: none" id="testing">
+			<li class="list-group-item" data-toggle="modal" data-target="#view" >
+				<span class="badge">5</span>
+				View
+			</li>
+			<li class="list-group-item" data-toggle="modal" data-target="#edit" >
+				<span class="badge">10</span>
+				Edit
+			</li>
+			<li class="list-group-item" data-toggle="modal" data-target="#delete">
+				<span class="badge">15</span>
+				Delete
+			</li>
+		</ul>
+		<div class="modal fade" id="addPhone">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Phone</h4>
+					</div>
+					<div class="modal-body">
+						<form action="" method="POST" role="form">
+							<div class="form-group">
+								<label for="">Name</label>
+								<input type="text" class="form-control" id="addname" placeholder="Enter Name">
+								<label for="">Price(Rs)</label>
+								<input type="text" class="form-control" id="addprice" placeholder="Enter Price">
+								<label for="">Brand ID</label>
+								<input type="text" class="form-control" id="addbrand" placeholder="Enter ID">
+								<label for="">Category ID</label>
+								<input type="text" class="form-control" id="addcategory" placeholder="Enter ID">
+								<label for="">Warranty</label>
+								<input type="text" class="form-control" id="addwarranty" placeholder="Enter Warranty">
+								<label for="">Quantity</label>
+								<input type="text" class="form-control" id="addquantity" placeholder="Enter Quantity">
+
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="addPhone()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+				
+		<div class="modal fade" id="view">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">{{phones[currentPhoneRow].brand}}</h4>
+					</div>
+					<div class="modal-body">
+						<img src={{"static/images/"+phones[currentPhoneRow].brand+".jpg"}} class="img-responsive" alt="Image">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita odio laudantium cum vero praesentium, iusto deleniti, doloribus repudiandae? Ipsum molestias nostrum aliquam, eligendi vel dolorem voluptas nisi asperiores illum nesciunt.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal --> 
+		<div class="modal fade" id="addBrand1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Brand</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="newbrand" placeholder="Enter new brand name">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="addBrand()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+
+		<div class="modal fade" id="addCategory1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Category</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="newcategory" placeholder="Enter new category name">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="addCategory()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="addFeature1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Add Feature</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="addfeaturename" placeholder="Enter new feature name">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="addFeature()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="edit">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">{{"Edit " + phones[currentPhoneRow].brand}}</h4>
+					</div>
+					<div class="modal-body">
+						<form action="" method="POST" role="form">
+							<div class="form-group">
+								<label for="">Name</label>
+								<input type="text" class="form-control" id="editname" ng-model=phones[currentPhoneRow].name>
+								<label for="">Price(Rs)</label>
+								<input type="text" class="form-control" id="editprice" ng-model=phones[currentPhoneRow].price>
+								<label for="">Brand ID</label>
+								<select name="" id="editbrand" class="form-control" required="required" ng-selected={{phones[currentPhoneRow].brand_id}} ng-model=phones[currentPhoneRow].brand_id>
+									<option ng-repeat="brand in brands" ng-model=brand.id>{{brand.id}}</option>
+								</select>
+								<label for="">Category ID</label>
+								<input type="text" class="form-control" id="editcategory" placeholder={{phones[currentPhoneRow].category_id}} ng-model=phones[currentPhoneRow].category_id>
+								<label for="">Warranty</label>
+								<input type="text" class="form-control" id="editwarranty" placeholder={{phones[currentPhoneRow].warranty}} ng-model=phones[currentPhoneRow].warranty>
+								<label for="">Quantity</label>
+								<input type="text" class="form-control" id="editquantity" placeholder={{phones[currentPhoneRow].quantity}} ng-model=phones[currentPhoneRow].quantity>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="editProduct()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="delete" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Delete {{phones[currentPhoneRow].name}}</h4>
+					</div>
+					<div class="modal-body">
+						<p>You want to delete me :( </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" 
+							ng-click="removePhone()" 
+							data-dismiss="modal">
+							Delete
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
